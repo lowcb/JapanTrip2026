@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本 11 日極致之旅：大阪至東京全程手冊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap');
+        :root { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #fafbfc; color: #1e293b; }
+        .section-content { display: none; }
+        .section-content.active { display: block; animation: slideUp 0.5s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-btn.active { color: #2563eb; border-bottom: 3px solid #2563eb; }
+        .timeline-item::before { content: ''; position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; z-index: 0; }
+        .timeline-dot { z-index: 10; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="text-xl font-black text-blue-700 tracking-tighter">JPN_MASTER_11</div>
+            <div class="hidden lg:flex space-x-6 text-sm font-bold uppercase tracking-widest">
+                <button onclick="showSection('overview', this)" class="nav-btn active px-2 py-1 transition">總覽</button>
+                <button onclick="showSection('accommodation', this)" class="nav-btn px-2 py-1 transition">交通住宿</button>
+                <button onclick="showSection('itinerary', this)" class="nav-btn px-2 py-1 transition">11日明細</button>
+                <button onclick="showSection('food', this)" class="nav-btn px-2 py-1 transition">美食地圖</button>
+                <button onclick="showSection('prep', this)" class="nav-btn px-2 py-1 transition text-red-500">行前準備</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20 max-w-5xl mx-auto px-4 lg:px-0">
+
+        <section id="overview" class="section-content active">
+            <div class="bg-gradient-to-br from-blue-800 to-indigo-900 rounded-[2rem] p-10 text-white shadow-2xl mb-10">
+                <h1 class="text-4xl lg:text-5xl font-black mb-4">大阪入 ➔ 東京出</h1>
+                <p class="text-blue-100 text-lg opacity-90 mb-6">5月13日 - 5月23日 | 兩位同行 | 預算 MYR 10,000/人</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                        <p class="text-xs opacity-60 uppercase mb-1">主要交通</p>
+                        <p class="font-bold">新幹線 Nozomi</p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                        <p class="text-xs opacity-60 uppercase mb-1">總天數</p>
+                        <p class="font-bold">11 Days</p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                        <p class="text-xs opacity-60 uppercase mb-1">文化重點</p>
+                        <p class="font-bold text-yellow-400">SGI 誓願堂</p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                        <p class="text-xs opacity-60 uppercase mb-1">樂園雙響</p>
+                        <p class="font-bold">USJ + Disney</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col md:flex-row gap-10 items-center">
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-2xl font-black mb-4 italic">交通時間與費用比例</h3>
+                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">我們為您優化了移動效率。大部分預算分配在高品質住宿與樂園快速通關，交通則以點對點新幹線為主。</p>
+                    <canvas id="budgetChart" width="400" height="250"></canvas>
+                </div>
+                <div class="w-full md:w-1/2 space-y-4">
+                    <div class="p-4 border rounded-2xl border-blue-100 bg-blue-50/50">
+                        <p class="text-xs font-bold text-blue-600 mb-1">💡 專家建議</p>
+                        <p class="text-sm">5月中旬氣溫約 18°C-25°C，非常舒適。此行程包含大量步行，建議穿著專業健走鞋。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="accommodation" class="section-content">
+            <h2 class="text-3xl font-black mb-8 border-l-8 border-blue-600 pl-4">精選推薦住宿</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-md border hover:border-blue-400 transition-all">
+                    <img src="https://photos.smugmug.com/Osaka/Minami-Area-Hotels/i-88VBB5q/0/9976f2fa/L/16277452-swissotel-nankai-osaka-booking-L.jpg" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Swissôtel Nankai Osaka</h3>
+                            <span class="bg-green-100 text-green-700 text-[10px] px-2 py-1 rounded font-bold uppercase">豪華五星</span>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4 italic leading-relaxed">座落於南海難波站上方。設施包含 5 間餐廳、室內恆溫泳池與頂級健身中心。前往機場與景點的終極樞紐。</p>
+                        <a href="https://maps.app.goo.gl/95uREr8v22yNWhMWA" target="_blank" class="text-blue-600 font-black text-xs underline">點擊查看 Google Maps 地圖</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl overflow-hidden shadow-md border hover:border-indigo-400 transition-all">
+                    <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&q=80&w=800" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Mitsui Garden Hotel Jingugaien</h3>
+                            <span class="bg-blue-100 text-blue-700 text-[10px] px-2 py-1 rounded font-bold uppercase">信仰與舒適</span>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4 italic leading-relaxed">位於信濃町附近。距離 SGI 誓願堂步行僅需 10 分鐘。頂樓設有景觀露台，可俯瞰國立競技場。</p>
+                        <a href="https://maps.app.goo.gl/Yp4iTjJ3z6YgR6oH9" target="_blank" class="text-blue-600 font-black text-xs underline">點擊查看 Google Maps 地圖</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="itinerary" class="section-content">
+            <h2 class="text-3xl font-black mb-12 text-center">11-Day Detailed Masterplan</h2>
+            <div class="relative timeline-container">
+                
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-black shadow-xl">01</div>
+                    <div class="bg-white rounded-3xl border shadow-sm overflow-hidden grid md:grid-cols-2 gap-0">
+                        <img src="https://images.unsplash.com/photo-1542210940661-5f91cb7afe02?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold text-blue-800 mb-2 italic">5/13: 大阪入境與道頓堀夜生活</h4>
+                            <p class="text-xs text-slate-400 mb-4 font-bold tracking-widest uppercase">Arrival & Food Trail</p>
+                            <ul class="text-sm space-y-4 text-slate-600">
+                                <li><b>10:00 AM:</b> 抵達關西機場 (KIX)。搭乘南海特急 (40min)。</li>
+                                <li><b>02:00 PM:</b> 飯店 Check-in。前往<b>黑門市場</b>嚐鮮（2小時）。</li>
+                                <li><b>07:00 PM:</b> <b>道頓堀</b>散步，固力果看版前必拍（3小時）。</li>
+                            </ul>
+                            <a href="https://maps.app.goo.gl/h4k8k8U6R6m6p" target="_blank" class="mt-6 inline-block text-xs bg-slate-100 px-4 py-2 rounded-lg font-bold">📍 Google Map: 難波區</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center font-black shadow-xl">02</div>
+                    <div class="bg-white rounded-3xl border shadow-sm overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1718965909148-564c62389f54?auto=format&fit=crop&q=80&w=1200" class="w-full h-64 object-cover">
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold text-red-600 mb-2 italic">5/14: 日本環球影城 (USJ) 全日</h4>
+                            <p class="text-sm text-slate-500 mb-4">路線：JR 難波 ➔ 今宮 ➔ 西九條 ➔ 環球影城站 (25min)。</p>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">今日全心投入 USJ。重點：任天堂世界、哈利波特、飛天翼龍。<b>建議停留：10小時。</b>務必購買 Express Pass 4 以節省 3-4 小時排隊時間。</p>
+                            <a href="https://maps.app.goo.gl/uXp8W" target="_blank" class="text-xs text-red-600 font-bold underline italic">📍 Google Map: USJ</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-slate-800 text-white rounded-full flex items-center justify-center font-black shadow-xl">03</div>
+                    <div class="bg-white rounded-3xl border shadow-sm p-8">
+                        <img src="https://images.unsplash.com/photo-1597959736807-7ed77b752358?auto=format&fit=crop&q=80&w=1200" class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h4 class="text-xl font-bold mb-4">5/15: 大阪城與梅田展望</h4>
+                        <ul class="text-sm space-y-3 text-slate-600">
+                            <li>• <b>10:00 AM:</b> <b>大阪城天守閣</b> (停留 3h)。體驗豐臣秀吉歷史。</li>
+                            <li>• <b>03:00 PM:</b> <b>新世界 (Shinsekai)</b>。通天閣老街景觀（2小時）。</li>
+                            <li>• <b>07:00 PM:</b> <b>梅田藍天大廈</b>看夜景 (停留 1.5h)。</li>
+                        </ul>
+                        <a href="https://maps.app.goo.gl/95uRE" target="_blank" class="text-xs underline mt-4 inline-block font-bold">📍 Google Map: 大阪城公園</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center font-black shadow-xl">04</div>
+                    <div class="bg-white rounded-3xl border shadow-sm p-8">
+                        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=1000" class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h4 class="text-xl font-bold mb-4">5/16: 京都古都巡禮 (大阪出發一日)</h4>
+                        <p class="text-xs text-slate-500 mb-2 italic">交通：京阪電車或 JR 新快速 (50min)</p>
+                        <ul class="text-sm space-y-3 text-slate-600">
+                            <li>• <b>09:00 AM:</b> <b>伏見稻荷大社</b> 千本鳥居 (停留 2h)。</li>
+                            <li>• <b>01:00 PM:</b> <b>清水寺</b> ➔ 三年坂 ➔ 祇園 (停留 4h)。</li>
+                        </ul>
+                        <a href="https://maps.app.goo.gl/HjU2p" target="_blank" class="text-xs underline mt-4 inline-block font-bold">📍 Google Map: 清水寺</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center font-black shadow-xl">05</div>
+                    <div class="bg-white rounded-3xl border shadow-sm p-8">
+                        <img src="https://images.unsplash.com/photo-1726737699208-bee1475d3a3f?auto=format&fit=crop&q=80&w=1000" class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h4 class="text-xl font-bold mb-4">5/17: 奈良公園小鹿與心齋橋最後採買</h4>
+                        <p class="text-sm text-slate-600 mb-4 italic">早起前往奈良，下午回大阪補齊藥妝購物。</p>
+                        <a href="https://maps.app.goo.gl/v6n9" target="_blank" class="text-xs underline font-bold">📍 Google Map: 奈良公園</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-indigo-700 text-white rounded-full flex items-center justify-center font-black shadow-xl">06</div>
+                    <div class="bg-white rounded-3xl border shadow-sm p-8">
+                        <h4 class="text-xl font-bold mb-4 italic text-indigo-700">5/18: 關西跨關東：新幹線移動日</h4>
+                        <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
+                            <ul class="text-sm space-y-4">
+                                <li>🚅 <b>10:00 AM:</b> 新大阪 ➔ 東京 (Nozomi 號，2小時30分)。</li>
+                                <li>🏨 <b>02:00 PM:</b> 東京信濃町/新宿飯店 Check-in。</li>
+                                <li>🌃 <b>07:00 PM:</b> 澀谷 <b>SHIBUYA SKY</b> (停留 1.5h)。俯瞰十字路口。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-indigo-800 text-white rounded-full flex items-center justify-center font-black shadow-xl">07</div>
+                    <div class="bg-white rounded-[2.5rem] border-4 border-indigo-100 shadow-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&q=80&w=1200" class="w-full h-64 object-cover">
+                        <div class="p-8">
+                            <h4 class="text-2xl font-black mb-4 text-indigo-900 underline decoration-indigo-300">5/19: 信仰核心：SGI 廣宣流布大誓願堂</h4>
+                            <p class="text-sm text-slate-500 mb-6 font-bold uppercase tracking-widest italic">The Spiritual Journey - Shinanomachi</p>
+                            <div class="space-y-4 text-slate-700 text-sm leading-relaxed">
+                                <p>今日是此次行程的心靈亮點。前往位於新宿區的信濃町，這裡是學會全球運作的核心。</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><b>上午：</b>參訪<b>廣宣流布大誓願堂</b>。建議提前預約法會行程（約停留 4-5 小時）。</li>
+                                    <li><b>下午：</b>漫步於平和公園與學會本部周邊。參觀學會書店。</li>
+                                    <li><b>傍晚：</b>前往鄰近的<b>神宮外苑</b>銀杏大道。</li>
+                                </ul>
+                            </div>
+                            <a href="https://maps.app.goo.gl/3Fv8v" target="_blank" class="mt-8 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full text-xs font-bold uppercase shadow-lg">📍 導航至 SGI 大誓願堂</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-cyan-600 text-white rounded-full flex items-center justify-center font-black shadow-xl">08</div>
+                    <div class="bg-white rounded-3xl border shadow-sm p-8">
+                        <img src="https://images.unsplash.com/photo-1718870008542-0ff8938360ad?auto=format&fit=crop&q=80&w=1200" class="w-full h-64 object-cover rounded-2xl mb-6">
+                        <h4 class="text-xl font-bold text-cyan-700 mb-4">5/20: 東京迪士尼海洋 (DisneySea)</h4>
+                        <p class="text-sm text-slate-600 mb-4 italic">全日體驗：全球唯一海洋主題，充滿成熟優雅氛圍。</p>
+                        <p class="text-xs text-slate-500"><b>亮點：</b>Fantasy Springs 新園區、地心探險、驚魂古塔。<b>停留時間：12小時。</b></p>
+                        <a href="https://maps.app.goo.gl/jS7p" target="_blank" class="text-xs underline mt-4 inline-block font-bold">📍 Google Map: DisneySea</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center font-black shadow-xl">09</div>
+                    <div class="bg-white rounded-3xl border shadow-sm p-8">
+                        <h4 class="text-xl font-bold mb-4 text-pink-700">5/21: 下町經典與潮流融合</h4>
+                        <ul class="text-sm space-y-4 text-slate-600">
+                            <li>• <b>10:00 AM:</b> <b>淺草寺 (Senso-ji)</b> 雷門參拜 (停留 3h)。</li>
+                            <li>• <b>02:00 PM:</b> 搭乘水上巴士前往台場或前往<b>東京晴空塔</b>。</li>
+                            <li>• <b>06:00 PM:</b> 秋葉原或銀座漫步。</li>
+                        </ul>
+                        <a href="https://maps.app.goo.gl/WvC7" target="_blank" class="text-xs underline mt-4 inline-block font-bold">📍 Google Map: 淺草雷門</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative mb-16 pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-violet-600 text-white rounded-full flex items-center justify-center font-black shadow-xl">10</div>
+                    <div class="bg-white rounded-3xl border shadow-sm p-8">
+                        <img src="https://images.unsplash.com/photo-1703443371292-0d9081cc4787?auto=format&fit=crop&q=80&w=1000" class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h4 class="text-xl font-bold text-violet-700 mb-4">5/22: 現代東京潮流全體驗</h4>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                            從<b>明治神宮</b>開始，步行至<b>原宿竹下通</b>，最後抵達<b>表參道</b>精品街。傍晚回新宿百貨做最後補貨。
+                        </p>
+                        <a href="https://maps.app.goo.gl/D7n" target="_blank" class="text-xs underline font-bold">📍 Google Map: 明治神宮</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item relative pl-16">
+                    <div class="timeline-dot absolute left-0 top-0 w-12 h-12 bg-slate-900 text-white rounded-full flex items-center justify-center font-black shadow-xl">11</div>
+                    <div class="bg-slate-900 text-white rounded-[2rem] p-8 shadow-2xl">
+                        <h4 class="text-2xl font-black mb-4 italic">5/23: 築地晨間美味 ➔ 羽田歸途</h4>
+                        <ul class="text-sm space-y-4 opacity-90">
+                            <li>• <b>09:00 AM:</b> 築地外市場享用最後的海鮮大餐。</li>
+                            <li>• <b>03:00 PM:</b> 行李寄存後，在羽田機場 (HND) 第 3 航廈「江戶小路」最後購物。</li>
+                            <li>• <b>08:00 PM:</b> 機場辦理登機。<b>11:00 PM</b> 起飛返回吉隆坡。</li>
+                        </ul>
+                        <div class="mt-6 pt-6 border-t border-white/20">
+                            <p class="text-xs italic font-bold text-yellow-400">旅行結束，生命能量滿滿回歸！</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="food" class="section-content">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10">
+                <h2 class="text-3xl font-black italic">Gourmet Experience</h2>
+                <div class="flex gap-2 mt-4">
+                    <button onclick="filterFood('all')" class="bg-slate-200 px-4 py-1 rounded-full text-xs font-bold">全部</button>
+                    <button onclick="filterFood('meat')" class="bg-red-100 text-red-700 px-4 py-1 rounded-full text-xs font-bold">燒肉/和牛</button>
+                    <button onclick="filterFood('seafood')" class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-xs font-bold">海鮮/壽司</button>
+                </div>
+            </div>
+            <div id="foodGrid" class="grid md:grid-cols-2 gap-6">
+                </div>
+        </section>
+
+        <section id="prep" class="section-content">
+            <h2 class="text-3xl font-black mb-8 text-red-600">⚠️ 行前必看注意事項</h2>
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-3xl border-2 border-dashed border-red-200">
+                    <h4 class="font-bold text-lg mb-4 flex items-center gap-2 text-red-700">📌 樂園與行程預約</h4>
+                    <ul class="text-sm space-y-4 text-slate-600">
+                        <li>• <b>USJ 快速通關：</b>強烈建議 3 月中旬即上網預訂（非常難搶）。</li>
+                        <li>• <b>Disney 門票：</b>建議入園前一個月透過 App 購買。</li>
+                        <li>• <b>SGI 誓願堂：</b>請務必提前透過所屬學會組織聯繫預約法會行程。</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-2 border-dashed border-slate-200">
+                    <h4 class="font-bold text-lg mb-4 flex items-center gap-2 text-slate-700">📱 科技工具</h4>
+                    <ul class="text-sm space-y-4 text-slate-600">
+                        <li>• <b>Visit Japan Web:</b> 提前填寫入境 QR Code。</li>
+                        <li>• <b>交通卡:</b> iPhone 使用者可直接在 Wallet 加入 Suica 卡。</li>
+                        <li>• <b>預算:</b> 推薦使用 Wise 或 BigPay 卡，匯率極佳且全國通用。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // SPA 區塊切換
+        function showSection(id, btn) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // 預算圖表
+        const ctx = document.getElementById('budgetChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['住宿 (35%)', '美食 (25%)', '交通 (15%)', '樂園/門票 (15%)', '備用 (10%)'],
+                datasets: [{
+                    data: [3500, 2500, 1500, 1500, 1000],
+                    backgroundColor: ['#1e40af', '#3b82f6', '#93c5fd', '#bfdbfe', '#e2e8f0'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }
+            }
+        });
+
+        // 美食資料
+        const foods = [
+            { name: "かに道楽 (螃蟹道樂) - 道頓堀", cat: "seafood", feedback: "蟹膏壽司與火鍋極為鮮甜，雖然遊客多但名不虛傳。", map: "https://maps.app.goo.gl/95uRE" },
+            { name: "燒肉 M (法善寺店) - 大阪", cat: "meat", feedback: "專精松阪牛，肉質豐潤。推薦預約午間套餐 CP 值最高。", map: "https://maps.app.goo.gl/uXp8W" },
+            { name: "敘敘苑 燒肉 - 新宿歌舞伎町店", cat: "meat", feedback: "東京高層夜景配高品質和牛。服務極致。", map: "https://maps.app.goo.gl/Yp4iT" },
+            { name: "壽司大 - 豐洲市場", cat: "seafood", feedback: "東京最頂尖的職人壽司，需提前數小時排隊但絕對值得。", map: "https://maps.app.goo.gl/jS7p" }
+        ];
+
+        function filterFood(type) {
+            const grid = document.getElementById('foodGrid');
+            grid.innerHTML = '';
+            foods.forEach(f => {
+                if(type === 'all' || f.cat === type) {
+                    grid.innerHTML += `
+                        <div class="bg-white p-6 rounded-3xl border hover:shadow-lg transition cursor-default">
+                            <h4 class="font-bold text-lg mb-1">${f.name}</h4>
+                            <p class="text-xs text-slate-500 mb-4 italic leading-relaxed">“${f.feedback}”</p>
+                            <a href="${f.map}" target="_blank" class="text-blue-600 font-bold text-[10px] underline uppercase tracking-tighter">View on Google Maps 📍</a>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        window.onload = () => filterFood('all');
+    </script>
+</body>
+</html>
