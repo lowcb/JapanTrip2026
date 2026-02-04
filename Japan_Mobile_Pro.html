@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>日本 11 日口袋手冊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background: #f1f5f9; -webkit-tap-highlight-color: transparent; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-item.active { color: #2563eb; }
+        .day-badge { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+        .safe-bottom { padding-bottom: calc(env(safe-area-inset-bottom) + 80px); }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 px-5 py-3 flex justify-between items-center">
+        <div class="flex flex-col">
+            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">5/13 - 5/23</span>
+            <h1 class="text-lg font-black text-blue-700 tracking-tighter">日本11日・廣宣之旅</h1>
+        </div>
+        <div class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">MYR 10k/人</div>
+    </header>
+
+    <main class="safe-bottom">
+
+        <section id="itinerary" class="tab-content active px-4 pt-6">
+            <div class="space-y-8 relative">
+                <div class="absolute left-[19px] top-0 bottom-0 w-[2px] bg-slate-200"></div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 day-badge text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">01</div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1590559899731-a382839e5549?w=600&q=80" class="w-full h-40 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg">5/13 大阪入境・難波</h3>
+                            <p class="text-xs text-slate-500 mt-1">南海特急 Rapi:t (40min)</p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="bg-slate-100 text-[10px] px-2 py-1 rounded">黑門市場</span>
+                                <span class="bg-slate-100 text-[10px] px-2 py-1 rounded">道頓堀</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 day-badge text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">02</div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1718965909148-564c62389f54?auto=format&fit=crop&q=80&w=1200" class="w-full h-40 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg text-red-600">5/14 環球影城 (USJ)</h3>
+                            <p class="text-xs text-slate-500 mt-1">任天堂/哈利波特 (全日停留)</p>
+                            <a href="https://maps.google.com/?q=Universal+Studios+Japan" class="text-blue-500 text-[10px] font-bold mt-2 inline-block">打開地圖 ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 day-badge text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">03</div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1597959736807-7ed77b752358?auto=format&fit=crop&q=80&w=1200" class="w-full h-40 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg">5/15 大阪城・新世界</h3>
+                            <p class="text-xs text-slate-500 mt-1">天守閣歷史漫步 ➔ 梅田夜景</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 day-badge text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">04</div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80" class="w-full h-40 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg">5/16 京都：清水寺・伏見</h3>
+                            <p class="text-xs text-slate-500 mt-1">千本鳥居 ➔ 三年坂和服體驗</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 day-badge text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">05</div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1726737699208-bee1475d3a3f?auto=format&fit=crop&q=80&w=1000" class="w-full h-40 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg">5/17 奈良公園・最後購物</h3>
+                            <p class="text-xs text-slate-500 mt-1">餵小鹿 ➔ 回大阪心齋橋掃貨</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 day-badge text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">06</div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600&q=80" class="w-full h-40 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg">5/18 新幹線移動・澀谷</h3>
+                            <p class="text-xs text-slate-500 mt-1">10:00 新大阪 ➔ 東京 (2.5h)</p>
+                            <span class="text-[10px] font-bold text-indigo-600">Shibuya Sky 夜景預約 19:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 bg-indigo-900 text-white rounded-full flex items-center justify-center font-black z-10 shadow-xl border-4 border-indigo-200">07</div>
+                    <div class="bg-indigo-50 rounded-2xl overflow-hidden shadow-md border border-indigo-200">
+                        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80" class="w-full h-44 object-cover" loading="lazy">
+                        <div class="p-5">
+                            <h3 class="font-black text-xl text-indigo-900 italic">5/19 廣宣流布大誓願堂</h3>
+                            <p class="text-sm text-indigo-700 mt-2 leading-relaxed font-medium">全日停留信濃町。參訪大誓願堂、學會本部。心靈決意之日。</p>
+                            <div class="mt-4 flex items-center gap-2 text-indigo-600 font-bold text-xs underline">
+                                <i class="fa-solid fa-location-dot"></i> 信濃町站步行 5 分鐘
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 day-badge text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">08</div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1545129139-1beb780cf337?w=600&q=80" class="w-full h-40 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg text-cyan-600">5/20 迪士尼海洋 (TDS)</h3>
+                            <p class="text-xs text-slate-500 mt-1">Fantasy Springs 全新園區</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 day-badge text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">09</div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=80" class="w-full h-40 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg">5/21 淺草雷門・晴空塔</h3>
+                            <p class="text-xs text-slate-500 mt-1">江戶風情 ➔ 現代地標</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 day-badge text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">10</div>
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1703443371292-0d9081cc4787?auto=format&fit=crop&q=80&w=1000" class="w-full h-40 object-cover" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg">5/22 明治神宮・表參道</h3>
+                            <p class="text-xs text-slate-500 mt-1">代代木森林 ➔ 原宿潮流 ➔ 新宿最後補貨</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-black z-10 shadow-lg">11</div>
+                    <div class="bg-slate-900 text-white rounded-2xl overflow-hidden shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80" class="w-full h-40 object-cover opacity-80" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="font-black text-lg text-yellow-400">5/23 築地市場・歸途</h3>
+                            <p class="text-xs text-slate-400 mt-1">築地海鮮 ➔ 銀座 ➔ 羽田機場 (23:00 起飛)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="travel" class="tab-content px-5 pt-8">
+            <h2 class="text-2xl font-black mb-6">住宿與樞紐</h2>
+            <div class="space-y-6">
+                <div class="p-5 bg-white rounded-3xl border shadow-sm">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">大阪樞紐</span>
+                        <i class="fa-solid fa-hotel text-blue-600"></i>
+                    </div>
+                    <h4 class="font-bold text-lg">Swissôtel Nankai</h4>
+                    <p class="text-sm text-slate-500 mt-2 leading-relaxed">直連南海難波站，關西機場入境首選。去道頓堀步行 5 分鐘。</p>
+                </div>
+                <div class="p-5 bg-indigo-900 text-white rounded-3xl shadow-lg shadow-indigo-200">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-bold text-indigo-300 bg-white/10 px-2 py-1 rounded">東京核心</span>
+                        <i class="fa-solid fa-place-of-worship"></i>
+                    </div>
+                    <h4 class="font-bold text-lg">三井花園神宮外苑</h4>
+                    <p class="text-sm text-indigo-100 mt-2 leading-relaxed">步行 10 分鐘內抵達 SGI 誓願堂。大浴場可放鬆 11 天的疲勞。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="prep" class="tab-content px-5 pt-8">
+            <h2 class="text-2xl font-black mb-6">Checklist</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-red-50 rounded-2xl border border-red-100">
+                    <i class="fa-solid fa-ticket text-red-600 mb-2"></i>
+                    <h5 class="font-bold text-sm">USJ/Disney</h5>
+                    <p class="text-[10px] text-slate-600 mt-1">需提前 2 個月預約</p>
+                </div>
+                <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
+                    <i class="fa-solid fa-mobile-screen text-emerald-600 mb-2"></i>
+                    <h5 class="font-bold text-sm">Visit Japan Web</h5>
+                    <p class="text-[10px] text-slate-600 mt-1">入境 QR Code</p>
+                </div>
+                <div class="p-4 bg-orange-50 rounded-2xl border border-orange-100">
+                    <i class="fa-solid fa-wallet text-orange-600 mb-2"></i>
+                    <h5 class="font-bold text-sm">Suica 卡</h5>
+                    <p class="text-[10px] text-slate-600 mt-1">手機 Wallet 加入</p>
+                </div>
+                <div class="p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                    <i class="fa-solid fa-shirt text-blue-600 mb-2"></i>
+                    <h5 class="font-bold text-sm">正式服裝</h5>
+                    <p class="text-[10px] text-slate-600 mt-1">參訪誓願堂建議</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-slate-200 px-6 py-3 flex justify-between items-center z-50 shadow-2xl">
+        <button onclick="switchTab('itinerary', this)" class="nav-item active flex flex-col items-center gap-1 transition-all">
+            <i class="fa-solid fa-map-location-dot text-xl"></i>
+            <span class="text-[10px] font-bold">11日行程</span>
+        </button>
+        <button onclick="switchTab('travel', this)" class="nav-item flex flex-col items-center gap-1 transition-all">
+            <i class="fa-solid fa-suitcase-rolling text-xl"></i>
+            <span class="text-[10px] font-bold">住宿交通</span>
+        </button>
+        <button onclick="switchTab('prep', this)" class="nav-item flex flex-col items-center gap-1 transition-all">
+            <i class="fa-solid fa-clipboard-check text-xl"></i>
+            <span class="text-[10px] font-bold">行前準備</span>
+        </button>
+    </nav>
+
+    <script>
+        function switchTab(tabId, btn) {
+            // 切換分頁內容
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+
+            // 切換按鈕狀態
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
+
+            // 滾動回頂部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
